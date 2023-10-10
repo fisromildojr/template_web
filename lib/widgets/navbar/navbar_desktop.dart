@@ -27,7 +27,7 @@ class NavBarDesktop extends StatelessWidget {
               SizedBox(width: 60),
               NavBarItem(
                 title: 'About',
-                route: AbouteRoute,
+                route: AboutRoute,
               ),
             ],
           ),

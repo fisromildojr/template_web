@@ -30,7 +30,7 @@ class NavDrawer extends StatelessWidget {
           DrawerItem(
             title: 'About',
             icon: Icons.help,
-            route: AbouteRoute,
+            route: AboutRoute,
           ),
         ],
       ),

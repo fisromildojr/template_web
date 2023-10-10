@@ -1,2 +1,3 @@
-const String HomeRoute = 'home';
-const String AbouteRoute = 'about';
+const String LayoutRoute = '/';
+const String HomeRoute = '/home';
+const String AboutRoute = '/about';
