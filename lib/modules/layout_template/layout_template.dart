@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:template_web/constants/constants.dart';
 import 'package:template_web/locator.dart';
 import 'package:template_web/routing/route_names.dart';
 import 'package:template_web/routing/router.dart';
@@ -16,21 +17,27 @@ class LayoutTemplate extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Scaffold(
         drawer: sizingInformation.deviceScreenType == DeviceScreenType.mobile
-            ? NavDrawer()
+            ? const NavDrawer()
             : null,
         body: CenteredPage(
-          child: Column(
-            children: [
-              NavBar(),
-              Expanded(
-                child: Navigator(
-                  key: locator<NavigationService>().navigatorKey,
-                  onGenerateRoute: gererateRoute,
-                  initialRoute: HomeRoute,
-                
+          child: Container(
+            padding: const EdgeInsets.all(defaultPadding),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              children: [
+                const NavBar(),
+                Divider(),
+                Expanded(
+                  child: Navigator(
+                    key: locator<NavigationService>().navigatorKey,
+                    onGenerateRoute: gererateRoute,
+                    initialRoute: HomeRoute,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NotFoundPageMobile extends StatelessWidget {
-  const NotFoundPageMobile({super.key});
+class NotFoundPageTablet extends StatelessWidget {
+  const NotFoundPageTablet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class NotFoundPageMobile extends StatelessWidget {
       children: [
         Image.asset(
           'assets/images/emoji_assustado.png',
-          width: MediaQuery.of(context).size.width * 0.2,
+          width: MediaQuery.of(context).size.width * 0.15,
         ),
         const Text(
           '404\nPágina não encontrada!',

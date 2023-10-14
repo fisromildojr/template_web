@@ -14,7 +14,11 @@ class NavBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => locator<NavigationService>().navigateTo(route),
+      onTap: () {
+        locator<NavigationService>().navigateTo(route);
+        // Navigator.of(context)
+        //     .pop(); // Fechar o Drawer quando clicar em um item do drawer
+      },
       child: Text(
         title,
         style: const TextStyle(fontSize: 18),

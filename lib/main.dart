@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:provider/provider.dart';
 import 'package:template_web/locator.dart';
-import 'package:template_web/modules/about/pages/about_page.dart';
-import 'package:template_web/modules/home/pages/home_page.dart';
 import 'package:template_web/modules/layout_template/layout_template.dart';
-import 'package:template_web/routing/route_names.dart';
-import 'package:template_web/routing/router.dart';
+import 'package:template_web/theme/my_theme.dart';
+import 'package:template_web/theme/theme_provider.dart';
 
 void main() {
   setUrlStrategy(PathUrlStrategy());
   setupLocator();
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,19 +23,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        textTheme: Theme.of(context).textTheme.apply(
-              fontFamily: 'Open Sans',
-            ),
-      ),
-      initialRoute: LayoutRoute,
-      onGenerateRoute: (settings) {
-        return gererateRoute(settings);
-      },
-      home: LayoutTemplate(),
+      title: 'Template Web',
+      debugShowCheckedModeBanner: false,
+      theme: MyTheme.lightTheme,
+      darkTheme: MyTheme.darkTheme,
+      themeMode: Provider.of<ThemeProvider>(context).themeMode,
+      home: const LayoutTemplate(),
     );
   }
 }

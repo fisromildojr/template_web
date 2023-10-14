@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:template_web/locator.dart';
 import 'package:template_web/modules/about/pages/about_page.dart';
 import 'package:template_web/modules/home/pages/home_page.dart';
 import 'package:template_web/modules/layout_template/layout_template.dart';
 import 'package:template_web/modules/not_found/pages/not_found_page.dart';
 import 'package:template_web/routing/route_names.dart';
-import 'package:template_web/services/navigation_service.dart';
 
 Route<dynamic> gererateRoute(RouteSettings settings) {
   switch (settings.name) {
     case LayoutRoute:
-      return _getPageRoute(LayoutTemplate());
+      return _getPageRoute(const LayoutTemplate());
     case HomeRoute:
       return _getPageRoute(HomePage());
     case AboutRoute:
