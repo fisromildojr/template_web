@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:template_web/widgets/navbar/navbar_logo.dart';
 
-class NavBarMobile extends StatelessWidget {
-  const NavBarMobile({super.key});
+class NavBarTablet extends StatelessWidget {
+  const NavBarTablet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,14 @@ class NavBarMobile extends StatelessWidget {
         children: [
           IconButton(
             icon: const Icon(Icons.menu),
-            onPressed: Scaffold.of(context).openDrawer,
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+          const Text(
+            'Template Web',
+            style: TextStyle(fontSize: 40),
+          ),
+          Expanded(
+            child: Container(),
           ),
           const NavBarLogo(),
         ],

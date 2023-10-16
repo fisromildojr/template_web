@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:template_web/constants/app_colors.dart';
+import 'package:template_web/theme/my_colors.dart';
 
 class NavDrawerHeader extends StatelessWidget {
   const NavDrawerHeader({super.key});
@@ -8,7 +8,7 @@ class NavDrawerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 150,
-        color: primaryColor,
+        color: MyColors.primaryColor,
         alignment: Alignment.center,
         child: const Column(
           mainAxisSize: MainAxisSize.min,
@@ -23,7 +23,7 @@ class NavDrawerHeader extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'by: @romildojroficial',
+              'by: @template_weboficial',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 12,
