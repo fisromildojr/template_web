@@ -29,7 +29,16 @@ class NavDrawerHeader extends StatelessWidget {
                 fontSize: 12,
               ),
             ),
-          ],
-        ));
+          ),
+          SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MySwitchTheme(),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
