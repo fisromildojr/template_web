@@ -34,6 +34,11 @@ class NavBarDesktop extends StatelessWidget {
               ).showCursorOnHover.moveUpOnHover,
               const SizedBox(width: 60),
               const NavBarItem(
+                title: 'Imagens',
+                route: ImagemListPageRoute,
+              ).showCursorOnHover.moveUpOnHover,
+              const SizedBox(width: 60),
+              const NavBarItem(
                 title: 'About',
                 route: AboutRoute,
               ).showCursorOnHover.moveUpOnHover,

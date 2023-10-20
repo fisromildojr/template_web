@@ -32,6 +32,11 @@ class NavDrawer extends StatelessWidget {
             route: HomeRoute,
           ),
           DrawerItem(
+            title: 'Imagens',
+            icon: Icons.help,
+            route: ImagemListPageRoute,
+          ),
+          DrawerItem(
             title: 'About',
             icon: Icons.help,
             route: AboutRoute,
