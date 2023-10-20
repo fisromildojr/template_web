@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:template_web/modules/home/pages/home_page_desktop.dart';
 import 'package:template_web/modules/home/pages/home_page_mobile.dart';
 
 class HomePage extends StatelessWidget {
-  final String? name;
-  const HomePage({
+  HomePage({
     super.key,
-    this.name,
   });
+
+  final String? name = Get.parameters['name'];
 
   @override
   Widget build(BuildContext context) {

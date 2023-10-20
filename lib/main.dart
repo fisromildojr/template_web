@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 // import 'package:template_web/locator.dart';
 import 'package:template_web/modules/layout_template/layout_template.dart';
+import 'package:template_web/routing/app_pages.dart';
 import 'package:template_web/routing/route_names.dart';
-import 'package:template_web/routing/router.dart';
 import 'package:template_web/theme/my_theme.dart';
 import 'package:template_web/theme/theme_provider.dart';
 
@@ -32,8 +32,9 @@ class MyApp extends StatelessWidget {
       darkTheme: MyTheme.darkTheme,
       themeMode: Provider.of<ThemeProvider>(context).themeMode,
       builder: (context, child) => LayoutTemplate(child: child!),
-      onGenerateRoute: generateRoute,
+      getPages: AppPages.routes,
       initialRoute: HomeRoute,
+      defaultTransition: Transition.fadeIn,
     );
   }
 }
