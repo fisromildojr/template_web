@@ -7,21 +7,22 @@ import 'package:template_web/modules/not_found/pages/not_found_page.dart';
 import 'package:template_web/routing/route_names.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
-  var routingData = settings.name?.getRoutingData;
+  var routingData = settings.name
+      ?.getRoutingData; //getRoutingData é uma extensão de String que mostra o log das variáveis e o path da url
   switch (routingData?.route) {
     case LayoutRoute:
-      return _getPageRoute(LayoutTemplate(), settings);
+      return _getPageRoute(const LayoutTemplate(), settings);
     case HomeRoute:
       var name = routingData?['name'];
       return _getPageRoute(
           HomePage(
-              // name: name,
-              ),
+            name: name,
+          ),
           settings);
     case AboutRoute:
-      return _getPageRoute(AboutPage(), settings);
+      return _getPageRoute(const AboutPage(), settings);
     default:
-      return _getPageRoute(NotFoundPage(), settings);
+      return _getPageRoute(const NotFoundPage(), settings);
   }
 }
 

@@ -29,7 +29,7 @@ class LayoutTemplate extends StatelessWidget {
             child: Column(
               children: [
                 const NavBar(),
-                Divider(),
+                const Divider(),
                 Expanded(
                   child: child ?? const NotFoundPage(),
                 ),

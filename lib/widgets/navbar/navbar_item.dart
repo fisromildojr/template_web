@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:template_web/extensions/hover_extensions.dart';
-import 'package:template_web/locator.dart';
-import 'package:template_web/services/navigation_service.dart';
 
 class NavBarItem extends StatelessWidget {
   final String title;
@@ -16,9 +15,8 @@ class NavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        locator<NavigationService>().navigateTo(route);
-        // Navigator.of(context)
-        //     .pop(); // Fechar o Drawer quando clicar em um item do drawer
+        Get.toNamed(route);
+        // Get.back(); // Fechar o Drawer quando clicar em um item do drawer
       },
       child: Text(
         title,
