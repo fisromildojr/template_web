@@ -36,8 +36,8 @@ class ImagemListPageDesktop extends GetView<ImagemPageController> {
               onRefresh: () async => controller.atualizar(),
               child: GridView.builder(
                 controller: controller.scrollController,
-                physics: AlwaysScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                physics: const AlwaysScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
                   crossAxisSpacing: defaultPadding,
                   mainAxisSpacing: defaultPadding,
@@ -47,11 +47,17 @@ class ImagemListPageDesktop extends GetView<ImagemPageController> {
                 itemBuilder: (context, index) {
                   if (index < controller.loadedPhotos.length) {
                     final photo = controller.loadedPhotos[index];
-                    return Image.network(photo.src?.medium ?? '')
-                        .moveUpOnHover; // Exibe a imagem
+                    return Hero(
+                      tag: photo.id.toString(),
+                      child: InkWell(
+                        onTap: () => controller.openImageModal(context, photo),
+                        child: Image.network(photo.src?.medium ?? '')
+                            .moveUpOnHover,
+                      ),
+                    ); // Exibe a imagem
                   } else {
                     return controller.isLoading
-                        ? Center(child: CircularProgressIndicator())
+                        ? const Center(child: CircularProgressIndicator())
                         : Container();
                   }
                 },

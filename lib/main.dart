@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => LayoutTemplate(child: child!),
       getPages: AppPages.routes,
       initialRoute: HomeRoute,
-      defaultTransition: Transition.fadeIn,
+      defaultTransition: Transition.downToUp,
     );
   }
 }

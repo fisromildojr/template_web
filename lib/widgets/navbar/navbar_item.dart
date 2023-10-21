@@ -13,15 +13,22 @@ class NavBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String currentRoute = ModalRoute.of(context)?.settings.name ?? "";
+
     return GestureDetector(
       onTap: () {
         Get.toNamed(route);
         // Get.back(); // Fechar o Drawer quando clicar em um item do drawer
       },
-      child: Text(
-        title,
-        style: const TextStyle(fontSize: 18),
-      ).showCursorOnHover,
+      child: Card(
+        child: ListTile(
+          selected: currentRoute == route,
+          title: Text(
+            title,
+            style: const TextStyle(fontSize: 18),
+          ),
+        ).showCursorOnHover,
+      ),
     );
   }
 }

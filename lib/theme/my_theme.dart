@@ -10,7 +10,10 @@ class MyTheme {
       centerTitle: true,
       backgroundColor: MyColors.primaryColor,
     ),
-    colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: MyColors.primaryColor, background: Colors.grey[100],
+      // background: Colors.black12,
+    ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStatePropertyAll(
@@ -38,5 +41,5 @@ class MyTheme {
 
   static final darkTheme = ThemeData.dark(
     useMaterial3: true,
-  );
+  ).copyWith();
 }
