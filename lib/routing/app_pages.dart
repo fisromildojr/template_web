@@ -25,6 +25,13 @@ class AppPages {
         ImagemBinding(),
       ],
     ),
+    GetPage(
+      name: '/contrato',
+      page: () => ImagemListPage(),
+      bindings: [
+        ImagemBinding(),
+      ],
+    ),
 
     // 404 - page not found - Deixar sempre por ultimo...
     GetPage(name: '/:path', page: () => const NotFoundPage())

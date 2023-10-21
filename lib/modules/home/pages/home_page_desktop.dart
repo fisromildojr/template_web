@@ -11,7 +11,8 @@ class HomePageDesktop extends StatelessWidget {
     this.name,
   });
 
-  final ScrollController scrollController = ScrollController();
+  final ScrollController scrollControllerCardSmall = ScrollController();
+  final ScrollController scrollControllerGraficos = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class HomePageDesktop extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SingleChildScrollView(
-            controller: scrollController,
+            controller: scrollControllerCardSmall,
             scrollDirection: Axis.horizontal,
             // physics: const AlwaysScrollableScrollPhysics(),
             child: Row(
@@ -58,245 +59,249 @@ class HomePageDesktop extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.all(defaultPadding),
-                padding: EdgeInsets.all(defaultPadding),
-                width: 450,
-                height: 490,
-                decoration: BoxDecoration(
-                  color: Provider.of<ThemeProvider>(context).themeMode ==
-                          ThemeMode.dark
-                      ? Colors.black87
-                      : Colors.white,
-                  borderRadius: BorderRadius.circular(
-                    20,
+          SingleChildScrollView(
+            controller: scrollControllerGraficos,
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(defaultPadding),
+                  padding: EdgeInsets.all(defaultPadding),
+                  width: 450,
+                  height: 490,
+                  decoration: BoxDecoration(
+                    color: Provider.of<ThemeProvider>(context).themeMode ==
+                            ThemeMode.dark
+                        ? Colors.black87
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(
+                      20,
+                    ),
                   ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Orcamento/Venda',
-                          style: TextStyle(
-                            color: Colors.teal,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        AspectRatio(
-                          aspectRatio: 1,
-                          child: PieChart(
-                            PieChartData(
-                              sections: [
-                                PieChartSectionData(
-                                  color: Colors.amber,
-                                  value: 68.000,
-                                  showTitle: true,
-                                  title: 'Orçamento',
-                                  titleStyle: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                PieChartSectionData(
-                                  // color: Colors.amber,
-                                  value: 30.000,
-                                  showTitle: true,
-                                  title: 'Venda',
-                                  titleStyle: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                              centerSpaceRadius: 100,
-                              sectionsSpace: 5,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Orcamento/Venda',
+                            style: TextStyle(
+                              color: Colors.teal,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              'Vendas',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.teal,
-                              ),
-                            ),
-                            Text(
-                              'R\$ 58.000,00',
-                              style: TextStyle(
-                                fontSize: 28,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(defaultPadding),
-                padding: EdgeInsets.all(defaultPadding),
-                width: 450,
-                height: 490,
-                decoration: BoxDecoration(
-                  color: Provider.of<ThemeProvider>(context).themeMode ==
-                          ThemeMode.dark
-                      ? Colors.black87
-                      : Colors.white,
-                  borderRadius: BorderRadius.circular(
-                    20,
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Turnover',
-                          style: TextStyle(
-                            color: Colors.teal,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      width: 450,
-                      height: 415,
-                      child: BarChart(
-                        BarChartData(
-                          borderData: FlBorderData(show: false),
-                          titlesData: FlTitlesData(show: true),
-                          barGroups: [
-                            BarChartGroupData(x: 0, barRods: [
-                              BarChartRodData(toY: 50, color: Colors.blue),
-                            ]),
-                            BarChartGroupData(x: 1, barRods: [
-                              BarChartRodData(toY: 60, color: Colors.green),
-                            ]),
-                            BarChartGroupData(x: 2, barRods: [
-                              BarChartRodData(toY: 70, color: Colors.blue),
-                            ]),
-                            BarChartGroupData(x: 3, barRods: [
-                              BarChartRodData(toY: 80, color: Colors.green),
-                            ]),
-                            BarChartGroupData(x: 4, barRods: [
-                              BarChartRodData(toY: 85, color: Colors.blue),
-                            ]),
-                            BarChartGroupData(x: 5, barRods: [
-                              BarChartRodData(toY: 90, color: Colors.green),
-                            ]),
-                            BarChartGroupData(x: 6, barRods: [
-                              BarChartRodData(toY: 85, color: Colors.blue),
-                            ]),
-                            BarChartGroupData(x: 7, barRods: [
-                              BarChartRodData(toY: 75, color: Colors.green),
-                            ]),
-                            BarChartGroupData(x: 8, barRods: [
-                              BarChartRodData(toY: 70, color: Colors.blue),
-                            ]),
-                            BarChartGroupData(x: 9, barRods: [
-                              BarChartRodData(toY: 65, color: Colors.green),
-                            ]),
-                            BarChartGroupData(x: 10, barRods: [
-                              BarChartRodData(toY: 60, color: Colors.blue),
-                            ]),
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(defaultPadding),
-                padding: EdgeInsets.all(defaultPadding),
-                width: 450,
-                height: 490,
-                decoration: BoxDecoration(
-                  color: Provider.of<ThemeProvider>(context).themeMode ==
-                          ThemeMode.dark
-                      ? Colors.black87
-                      : Colors.white,
-                  borderRadius: BorderRadius.circular(
-                    20,
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          AspectRatio(
+                            aspectRatio: 1,
+                            child: PieChart(
+                              PieChartData(
+                                sections: [
+                                  PieChartSectionData(
+                                    color: Colors.amber,
+                                    value: 68.000,
+                                    showTitle: true,
+                                    title: 'Orçamento',
+                                    titleStyle: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  PieChartSectionData(
+                                    // color: Colors.amber,
+                                    value: 30.000,
+                                    showTitle: true,
+                                    title: 'Venda',
+                                    titleStyle: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                                centerSpaceRadius: 100,
+                                sectionsSpace: 5,
+                              ),
+                            ),
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                'Vendas',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.teal,
+                                ),
+                              ),
+                              Text(
+                                'R\$ 58.000,00',
+                                style: TextStyle(
+                                  fontSize: 28,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Contas a pagar',
-                          style: TextStyle(
-                            color: Colors.teal,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
+                Container(
+                  margin: EdgeInsets.all(defaultPadding),
+                  padding: EdgeInsets.all(defaultPadding),
+                  width: 450,
+                  height: 490,
+                  decoration: BoxDecoration(
+                    color: Provider.of<ThemeProvider>(context).themeMode ==
+                            ThemeMode.dark
+                        ? Colors.black87
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(
+                      20,
                     ),
-                    SizedBox(
-                      width: 450,
-                      height: 415,
-                      child: LineChart(
-                        LineChartData(
-                          borderData: FlBorderData(show: true),
-                          gridData: FlGridData(show: false),
-                          titlesData: FlTitlesData(
-                              // leftTitles: SideTitles(showTitles: true),
-                              // bottomTitles: SideTitles(showTitles: true),
-                              ),
-                          minX: 0,
-                          maxX: 11,
-                          minY: 0,
-                          maxY: 100,
-                          lineBarsData: [
-                            LineChartBarData(
-                              spots: [
-                                FlSpot(0, 50),
-                                FlSpot(1, 60),
-                                FlSpot(2, 70),
-                                FlSpot(3, 80),
-                                FlSpot(4, 85),
-                                FlSpot(5, 90),
-                                FlSpot(6, 85),
-                                FlSpot(7, 75),
-                                FlSpot(8, 70),
-                                FlSpot(9, 65),
-                                FlSpot(10, 60),
-                              ],
-                              isCurved: true,
-                              // colors: [Colors.blue],
-                              dotData: FlDotData(show: true),
-                              belowBarData: BarAreaData(show: false),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Turnover',
+                            style: TextStyle(
+                              color: Colors.teal,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        width: 450,
+                        height: 415,
+                        child: BarChart(
+                          BarChartData(
+                            borderData: FlBorderData(show: false),
+                            titlesData: FlTitlesData(show: true),
+                            barGroups: [
+                              BarChartGroupData(x: 0, barRods: [
+                                BarChartRodData(toY: 50, color: Colors.blue),
+                              ]),
+                              BarChartGroupData(x: 1, barRods: [
+                                BarChartRodData(toY: 60, color: Colors.green),
+                              ]),
+                              BarChartGroupData(x: 2, barRods: [
+                                BarChartRodData(toY: 70, color: Colors.blue),
+                              ]),
+                              BarChartGroupData(x: 3, barRods: [
+                                BarChartRodData(toY: 80, color: Colors.green),
+                              ]),
+                              BarChartGroupData(x: 4, barRods: [
+                                BarChartRodData(toY: 85, color: Colors.blue),
+                              ]),
+                              BarChartGroupData(x: 5, barRods: [
+                                BarChartRodData(toY: 90, color: Colors.green),
+                              ]),
+                              BarChartGroupData(x: 6, barRods: [
+                                BarChartRodData(toY: 85, color: Colors.blue),
+                              ]),
+                              BarChartGroupData(x: 7, barRods: [
+                                BarChartRodData(toY: 75, color: Colors.green),
+                              ]),
+                              BarChartGroupData(x: 8, barRods: [
+                                BarChartRodData(toY: 70, color: Colors.blue),
+                              ]),
+                              BarChartGroupData(x: 9, barRods: [
+                                BarChartRodData(toY: 65, color: Colors.green),
+                              ]),
+                              BarChartGroupData(x: 10, barRods: [
+                                BarChartRodData(toY: 60, color: Colors.blue),
+                              ]),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                Container(
+                  margin: EdgeInsets.all(defaultPadding),
+                  padding: EdgeInsets.all(defaultPadding),
+                  width: 450,
+                  height: 490,
+                  decoration: BoxDecoration(
+                    color: Provider.of<ThemeProvider>(context).themeMode ==
+                            ThemeMode.dark
+                        ? Colors.black87
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(
+                      20,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Contas a pagar',
+                            style: TextStyle(
+                              color: Colors.teal,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        width: 450,
+                        height: 415,
+                        child: LineChart(
+                          LineChartData(
+                            borderData: FlBorderData(show: true),
+                            gridData: FlGridData(show: false),
+                            titlesData: FlTitlesData(
+                                // leftTitles: SideTitles(showTitles: true),
+                                // bottomTitles: SideTitles(showTitles: true),
+                                ),
+                            minX: 0,
+                            maxX: 11,
+                            minY: 0,
+                            maxY: 100,
+                            lineBarsData: [
+                              LineChartBarData(
+                                spots: [
+                                  FlSpot(0, 50),
+                                  FlSpot(1, 60),
+                                  FlSpot(2, 70),
+                                  FlSpot(3, 80),
+                                  FlSpot(4, 85),
+                                  FlSpot(5, 90),
+                                  FlSpot(6, 85),
+                                  FlSpot(7, 75),
+                                  FlSpot(8, 70),
+                                  FlSpot(9, 65),
+                                  FlSpot(10, 60),
+                                ],
+                                isCurved: true,
+                                // colors: [Colors.blue],
+                                dotData: FlDotData(show: true),
+                                belowBarData: BarAreaData(show: false),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

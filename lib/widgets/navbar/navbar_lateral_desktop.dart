@@ -23,24 +23,24 @@ class NavBarLateralDesktop extends StatelessWidget {
         child: ListView(
           // mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
+                SizedBox(
                   height: 40,
                   width: 40,
                   child: FlutterLogo(),
                 ),
-                const Text(
+                Text(
                   'Template Web',
                   style: TextStyle(fontSize: 35),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
@@ -53,7 +53,7 @@ class NavBarLateralDesktop extends StatelessWidget {
                 )
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -62,34 +62,41 @@ class NavBarLateralDesktop extends StatelessWidget {
                 )
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text('fis.romildojr@gmail.com')],
             ),
             const SizedBox(width: 60),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const MySwitchTheme(),
+                MySwitchTheme(),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             const Divider(),
             const NavBarItem(
               title: 'Home',
               route: HomeRoute,
+              icon: Icon(Icons.home),
             ).showCursorOnHover.moveUpOnHover,
             const SizedBox(width: 60),
             const NavBarItem(
               title: 'Imagens',
               route: ImagemListPageRoute,
+              icon: Icon(
+                Icons.photo_library,
+              ),
             ).showCursorOnHover.moveUpOnHover,
             const SizedBox(width: 60),
             const NavBarItem(
               title: 'About',
               route: AboutRoute,
+              icon: Icon(
+                Icons.lightbulb,
+              ),
             ).showCursorOnHover.moveUpOnHover,
             // const SizedBox(width: 60),
             // const MySwitchTheme(),

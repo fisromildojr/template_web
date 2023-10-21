@@ -5,10 +5,12 @@ import 'package:template_web/extensions/hover_extensions.dart';
 class NavBarItem extends StatelessWidget {
   final String title;
   final String route;
+  final Widget? icon;
   const NavBarItem({
     super.key,
     required this.title,
     required this.route,
+    this.icon,
   });
 
   @override
@@ -23,6 +25,7 @@ class NavBarItem extends StatelessWidget {
       child: Card(
         child: ListTile(
           selected: currentRoute == route,
+          leading: icon,
           title: Text(
             title,
             style: const TextStyle(fontSize: 18),
