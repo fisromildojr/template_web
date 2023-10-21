@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:template_web/constants/constants.dart';
 import 'package:template_web/extensions/hover_extensions.dart';
 import 'package:template_web/routing/route_names.dart';
 import 'package:template_web/theme/theme_provider.dart';
@@ -27,54 +28,61 @@ class NavBarLateralDesktop extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 40,
-                  width: 40,
+                  height: 30,
+                  width: 30,
                   child: FlutterLogo(),
                 ),
                 Text(
                   'Template Web',
-                  style: TextStyle(fontSize: 35),
+                  style: TextStyle(fontSize: 25),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            const Row(
+            // const SizedBox(
+            //   height: defaultPadding,
+            // ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"),
+                Padding(
+                  padding: const EdgeInsets.all(defaultPadding),
+                  child: SizedBox(
+                    width: 35,
+                    height: 35,
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          "https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"),
+                    ),
                   ),
-                )
+                ),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Romildo Jr',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800, fontSize: 15),
+                        )
+                      ],
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('fis.romildojr@gmail.com',
+                            style: TextStyle(fontSize: 12))
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Romildo Jr',
-                  style: TextStyle(fontWeight: FontWeight.w800),
-                )
-              ],
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text('fis.romildojr@gmail.com')],
-            ),
-            const SizedBox(width: 60),
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MySwitchTheme(),
               ],
-            ),
-            const SizedBox(
-              height: 30,
             ),
             const Divider(),
             const NavBarItem(
