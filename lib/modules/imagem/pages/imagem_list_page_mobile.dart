@@ -4,8 +4,34 @@ import 'package:template_web/constants/constants.dart';
 import 'package:template_web/extensions/hover_extensions.dart';
 import 'package:template_web/modules/imagem/controllers/imagem_page_controller.dart';
 
-class ImagemListPageMobile extends GetView<ImagemPageController> {
-  const ImagemListPageMobile({Key? key}) : super(key: key);
+class ImagemListPageMobile extends StatefulWidget {
+  ImagemListPageMobile({Key? key}) : super(key: key);
+
+  @override
+  State<ImagemListPageMobile> createState() => _ImagemListPageMobileState();
+}
+
+class _ImagemListPageMobileState extends State<ImagemListPageMobile> {
+  final ScrollController scrollController = ScrollController();
+  final controller = Get.find<ImagemPageController>();
+
+  @override
+  void initState() {
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        // O usuário rolou até o final, carregue mais dados
+        controller.loadMoreData();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +61,9 @@ class ImagemListPageMobile extends GetView<ImagemPageController> {
             child: RefreshIndicator(
               onRefresh: () async => controller.atualizar(),
               child: GridView.builder(
-                controller: controller.scrollController,
-                physics: AlwaysScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                controller: scrollController,
+                physics: const AlwaysScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   crossAxisSpacing: defaultPadding,
                   mainAxisSpacing: defaultPadding,
@@ -51,7 +77,9 @@ class ImagemListPageMobile extends GetView<ImagemPageController> {
                         .moveUpOnHover; // Exibe a imagem
                   } else {
                     return controller.isLoading
-                        ? Center(child: CircularProgressIndicator())
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
                         : Container();
                   }
                 },
