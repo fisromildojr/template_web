@@ -23,7 +23,7 @@ class NavDrawer extends StatelessWidget {
           ),
         ],
       ),
-      child: const Column(
+      child: Column(
         children: [
           NavDrawerHeader(),
           DrawerItem(

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breadcrumb/flutter_breadcrumb.dart';
 import 'package:get/get.dart';
 import 'package:template_web/constants/constants.dart';
+import 'package:template_web/widgets/custom_snackbar/controllers/custom_snackbar_controller.dart';
 
 class NavBarSuperiorDesktop extends StatelessWidget {
   NavBarSuperiorDesktop({Key? key}) : super(key: key);
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  RxBool isContextMenuOpen = false.obs;
 
   void _showNotifications(TapDownDetails details) {
+    isContextMenuOpen(true);
     showMenu(
       context: Get.context!,
       position: RelativeRect.fromLTRB(
@@ -20,7 +23,7 @@ class NavBarSuperiorDesktop extends StatelessWidget {
         PopupMenuItem<String>(
           value: 'novoContrato',
           onTap: () => Get.toNamed('/contrato', parameters: {"id": "2"}),
-          child: ListTile(
+          child: const ListTile(
             dense: true,
             title: Text(
               'Novo contrato',
@@ -32,94 +35,8 @@ class NavBarSuperiorDesktop extends StatelessWidget {
                 'Murilo cadastrou um novo contrato do Romildo Alves de Souza Junior, CPF: 034.693.941-05'),
           ),
         ),
-        const PopupMenuItem<String>(
-          value: 'novaConta',
-          child: ListTile(
-            title: Text('Novo contrato'),
-            subtitle: Text('Murilo cadastrou um novo contrato'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'novoContrato',
-          child: ListTile(
-            title: Text('Novo contrato'),
-            subtitle: Text('Murilo cadastrou um novo contrato'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'novoContrato',
-          child: ListTile(
-            title: Text('Novo contrato'),
-            subtitle: Text('Murilo cadastrou um novo contrato'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'novoContrato',
-          child: ListTile(
-            title: Text('Novo contrato'),
-            subtitle: Text('Murilo cadastrou um novo contrato'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'novoContrato',
-          child: ListTile(
-            title: Text('Novo contrato'),
-            subtitle: Text('Murilo cadastrou um novo contrato'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'novoContrato',
-          child: ListTile(
-            title: Text('Novo contrato'),
-            subtitle: Text('Murilo cadastrou um novo contrato'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          mouseCursor: MouseCursor.defer,
-          value: 'novoContrato',
-          child: ListTile(
-            title: Text('Novo contrato'),
-            subtitle: Text('Murilo cadastrou um novo contrato'),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          value: 'teste',
-          child: ListTile(
-            title: Text('Teste'),
-            subtitle: Text('Subtitulo'),
-          ),
-        ),
       ],
-    );
-    // showDialog(
-    //   context: Get.context!,
-    //   builder: (context) {
-    //     return AlertDialog(
-    //       title: Row(
-    //         mainAxisAlignment: MainAxisAlignment.center,
-    //         children: [
-    //           const Text('Notificações'),
-    //         ],
-    //       ),
-    //       content: SizedBox(
-    //         width: 300, // Personalize o tamanho conforme necessário
-    //         height: 400, // Personalize o tamanho conforme necessário
-    //         child: ListView(
-    //           children: const <Widget>[
-    //             // Lista de notificações
-    //             ListTile(
-    //               title: Text('Notificação 1'),
-    //             ),
-    //             ListTile(
-    //               title: Text('Notificação 2'),
-    //             ),
-    //             // Adicione mais notificações conforme necessário
-    //           ],
-    //         ),
-    //       ),
-    //     );
-    //   },
-    // );
+    ).then((value) => isContextMenuOpen(false));
   }
 
   @override
@@ -137,7 +54,33 @@ class NavBarSuperiorDesktop extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: defaultPadding,
+                  right: defaultPadding,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    BreadCrumb(
+                      items: <BreadCrumbItem>[
+                        BreadCrumbItem(
+                          content: const Text(Navigator.defaultRouteName),
+                        ),
+                      ],
+                      divider: const Icon(Icons.chevron_right),
+                    )
+                  ],
+                ),
+              ),
+            ),
             InkWell(
+              onTap: () => Get.find<CustomSnackBarController>().showSnackBar(
+                message: "Esta é uma mensagem de sucesso.",
+                title: "Título",
+              ),
               child: Stack(
                 children: [
                   const Icon(
@@ -172,39 +115,39 @@ class NavBarSuperiorDesktop extends StatelessWidget {
             const SizedBox(
               width: defaultPadding,
             ),
-            InkWell(
-              onTapDown: (Get.isDialogOpen ?? false)
-                  ? null
-                  : (details) => _showNotifications(details),
-              child: Stack(
-                children: [
-                  const Icon(
-                    Icons.notifications,
-                    size: 30,
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+            Obx(() => InkWell(
+                  onTapDown: (isContextMenuOpen.isTrue)
+                      ? null
+                      : (details) => _showNotifications(details),
+                  child: Stack(
+                    children: [
+                      const Icon(
+                        Icons.notifications,
+                        size: 30,
                       ),
-                      child: const Text(
-                        '4',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.white,
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          width: 15,
+                          height: 15,
+                          decoration: const BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                          child: const Text(
+                            '4',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+                      )
+                    ],
+                  ),
+                )),
             const SizedBox(
               width: defaultPadding * 2,
             ),

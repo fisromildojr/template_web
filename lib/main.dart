@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:template_web/modules/initial/bindings/initial_binding.dart';
 // import 'package:template_web/locator.dart';
 import 'package:template_web/modules/layout_template/layout_template.dart';
 import 'package:template_web/routing/app_pages.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => LayoutTemplate(child: child!),
       getPages: AppPages.routes,
       initialRoute: HomeRoute,
+      initialBinding: InitialBinding(),
       defaultTransition: Transition.downToUp,
     );
   }

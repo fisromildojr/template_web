@@ -11,7 +11,7 @@ class AppPages {
     GetPage(
       name: HomeRoute,
       page: () => HomePage(),
-      bindings: const [],
+      bindings: [],
     ),
     GetPage(
       name: AboutRoute,

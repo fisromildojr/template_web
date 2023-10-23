@@ -5,6 +5,6 @@ class ImagemBinding implements Bindings {
   @override
   void dependencies() {
     // Imagem
-    Get.put(ImagemPageController());
+    Get.lazyPut(() => ImagemPageController());
   }
 }
