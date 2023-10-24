@@ -20,7 +20,6 @@ dependencies:
   responsive_builder: ^0.7.0
   get_it: ^7.6.4
   universal_html: ^2.2.4
-  provider: ^6.0.5
   get: ^4.6.6
   intl: ^0.18.1
   json_annotation: ^4.8.1

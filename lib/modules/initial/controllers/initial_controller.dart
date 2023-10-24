@@ -14,18 +14,4 @@ class InitialController extends GetxController {
       ),
     ));
   }
-
-  void showSnackBar(BuildContext context) {
-    final snackBar = SnackBar(
-      content: Text('Esta é uma mensagem de exemplo.'),
-      action: SnackBarAction(
-        label: 'Desfazer',
-        onPressed: () {
-          // Ação a ser executada quando o botão "Desfazer" é pressionado.
-        },
-      ),
-    );
-
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
 }

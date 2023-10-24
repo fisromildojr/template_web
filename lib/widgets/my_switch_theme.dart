@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:template_web/theme/theme_provider.dart';
+import 'package:get/get.dart';
+import 'package:template_web/theme/controllers/theme_controller.dart';
 
 class MySwitchTheme extends StatelessWidget {
   const MySwitchTheme({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark;
+    final isDarkMode = Get.find<ThemeController>().themeMode == ThemeMode.dark;
     return Center(
       child: Row(
         children: [
@@ -21,8 +20,7 @@ class MySwitchTheme extends StatelessWidget {
           ),
           Switch(
             value: isDarkMode,
-            onChanged: (_) => Provider.of<ThemeProvider>(context, listen: false)
-                .toggleTheme(),
+            onChanged: (_) => Get.find<ThemeController>().toggleTheme(),
           ),
           Visibility(
             visible: isDarkMode,

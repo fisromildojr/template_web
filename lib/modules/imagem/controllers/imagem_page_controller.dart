@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:provider/provider.dart';
 import 'package:template_web/constants/constants.dart';
 import 'package:template_web/modules/imagem/controllers/imagem_back_controller.dart';
 import 'package:template_web/modules/imagem/models/imagem_model.dart';
-import 'package:template_web/theme/theme_provider.dart';
+import 'package:template_web/theme/controllers/theme_controller.dart';
 
 class ImagemPageController extends GetxController {
   bool isLoading = false;
@@ -66,48 +65,49 @@ class ImagemPageController extends GetxController {
       context: context,
       builder: (context) {
         return Dialog(
-          child: Stack(
-            children: [
-              PhotoView(
-                  heroAttributes:
-                      PhotoViewHeroAttributes(tag: photos.id.toString()),
-                  imageProvider: NetworkImage(photos.src?.large2x ??
-                      ''), // Substitua pelo URL da sua imagem
-                  minScale: PhotoViewComputedScale.contained,
-                  maxScale: PhotoViewComputedScale.covered * 2,
-                  backgroundDecoration: BoxDecoration(
-                    color: Provider.of<ThemeProvider>(context).themeMode ==
-                            ThemeMode.dark
-                        ? Colors.black87
-                        : Colors.white,
-                  )),
-              Positioned(
-                top: defaultPadding,
-                right: defaultPadding,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Provider.of<ThemeProvider>(context).themeMode ==
-                            ThemeMode.dark
-                        ? Colors.white
-                        : Colors.black87,
-                    borderRadius: BorderRadius.circular(
-                      50,
-                    ),
-                  ),
-                  child: IconButton(
-                    onPressed: () => Get.back(),
-                    icon: Icon(
-                      Icons.close,
-                      color: Provider.of<ThemeProvider>(context).themeMode ==
-                              ThemeMode.dark
-                          ? Colors.black87
-                          : Colors.white,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
+          child: GetBuilder<ThemeController>(
+              init: Get.find<ThemeController>(),
+              builder: (controller) {
+                return Stack(
+                  children: [
+                    PhotoView(
+                        heroAttributes:
+                            PhotoViewHeroAttributes(tag: photos.id.toString()),
+                        imageProvider: NetworkImage(photos.src?.large2x ??
+                            ''), // Substitua pelo URL da sua imagem
+                        minScale: PhotoViewComputedScale.contained,
+                        maxScale: PhotoViewComputedScale.covered * 2,
+                        backgroundDecoration: BoxDecoration(
+                          color: controller.themeMode == ThemeMode.dark
+                              ? Colors.black87
+                              : Colors.white,
+                        )),
+                    Positioned(
+                      top: defaultPadding,
+                      right: defaultPadding,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: controller.themeMode == ThemeMode.dark
+                              ? Colors.white
+                              : Colors.black87,
+                          borderRadius: BorderRadius.circular(
+                            50,
+                          ),
+                        ),
+                        child: IconButton(
+                          onPressed: () => Get.back(),
+                          icon: Icon(
+                            Icons.close,
+                            color: controller.themeMode == ThemeMode.dark
+                                ? Colors.black87
+                                : Colors.white,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              }),
         );
       },
     );

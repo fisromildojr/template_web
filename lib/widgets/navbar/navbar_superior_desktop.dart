@@ -77,8 +77,9 @@ class NavBarSuperiorDesktop extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () => Get.find<CustomSnackBarController>().showSnackBar(
-                message: "Esta é uma mensagem de sucesso.",
+              onTap: () =>
+                  Get.find<CustomSnackBarController>().showSnackBarError(
+                message: "Esta é uma mensagem de erro.",
                 title: "Título",
               ),
               child: Stack(
