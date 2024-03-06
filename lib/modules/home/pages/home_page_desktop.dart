@@ -74,9 +74,7 @@ class HomePageDesktop extends StatelessWidget {
                         width: 450,
                         height: 490,
                         decoration: BoxDecoration(
-                          color: controller.themeMode == ThemeMode.dark
-                              ? Colors.black87
-                              : Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(
                             20,
                           ),
@@ -159,9 +157,7 @@ class HomePageDesktop extends StatelessWidget {
                         width: 450,
                         height: 490,
                         decoration: BoxDecoration(
-                          color: controller.themeMode == ThemeMode.dark
-                              ? Colors.black87
-                              : Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(
                             20,
                           ),
@@ -223,9 +219,7 @@ class HomePageDesktop extends StatelessWidget {
                         width: 450,
                         height: 490,
                         decoration: BoxDecoration(
-                          color: controller.themeMode == ThemeMode.dark
-                              ? Colors.black87
-                              : Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(
                             20,
                           ),

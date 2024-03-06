@@ -16,9 +16,7 @@ class NavBarLateralDesktop extends StatelessWidget {
         builder: (controller) {
           return Container(
             decoration: BoxDecoration(
-              color: controller.themeMode == ThemeMode.dark
-                  ? Colors.black87
-                  : Colors.white,
+              color: Theme.of(context).cardColor,
             ),
             // color: Get.isDarkMode ? Colors.black87 : Colors.white,
             child: SizedBox(

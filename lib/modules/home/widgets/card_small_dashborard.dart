@@ -29,9 +29,7 @@ class CardSmallDashBoard extends StatelessWidget {
             width: 350,
             height: 130,
             decoration: BoxDecoration(
-              color: controller.themeMode == ThemeMode.dark
-                  ? Colors.black87
-                  : Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(
                 20,
               ),
