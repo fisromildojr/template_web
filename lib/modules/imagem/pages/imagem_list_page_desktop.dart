@@ -61,7 +61,7 @@ class _ImagemListPageDesktopState extends State<ImagemListPageDesktop> {
             child: RefreshIndicator(
               onRefresh: () async => controller.atualizar(),
               child: GridView.builder(
-                controller: controller.scrollController,
+                controller: scrollController,
                 physics: const AlwaysScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
