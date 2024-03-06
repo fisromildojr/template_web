@@ -11,7 +11,7 @@ class AppPages {
     GetPage(
       name: HomeRoute,
       page: () => HomePage(),
-      bindings: const [],
+      bindings: [],
     ),
     GetPage(
       name: AboutRoute,
@@ -20,6 +20,13 @@ class AppPages {
     ),
     GetPage(
       name: ImagemListPageRoute,
+      page: () => ImagemListPage(),
+      bindings: [
+        ImagemBinding(),
+      ],
+    ),
+    GetPage(
+      name: '/contrato',
       page: () => ImagemListPage(),
       bindings: [
         ImagemBinding(),

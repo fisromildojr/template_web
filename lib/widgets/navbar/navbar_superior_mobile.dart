@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:template_web/widgets/navbar/navbar_logo.dart';
 
-class NavBarMobile extends StatelessWidget {
-  const NavBarMobile({super.key});
+class NavBarSuperiorMobile extends StatelessWidget {
+  const NavBarSuperiorMobile({super.key});
 
   @override
   Widget build(BuildContext context) {

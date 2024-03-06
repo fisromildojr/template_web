@@ -61,7 +61,7 @@ class _ImagemListPageDesktopState extends State<ImagemListPageDesktop> {
             child: RefreshIndicator(
               onRefresh: () async => controller.atualizar(),
               child: GridView.builder(
-                controller: scrollController,
+                controller: controller.scrollController,
                 physics: const AlwaysScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
@@ -73,13 +73,17 @@ class _ImagemListPageDesktopState extends State<ImagemListPageDesktop> {
                 itemBuilder: (context, index) {
                   if (index < controller.loadedPhotos.length) {
                     final photo = controller.loadedPhotos[index];
-                    return Image.network(photo.src?.medium ?? '')
-                        .moveUpOnHover; // Exibe a imagem
+                    return Hero(
+                      tag: photo.id.toString(),
+                      child: InkWell(
+                        onTap: () => controller.openImageModal(context, photo),
+                        child: Image.network(photo.src?.medium ?? '')
+                            .moveUpOnHover,
+                      ),
+                    ); // Exibe a imagem
                   } else {
                     return controller.isLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? const Center(child: CircularProgressIndicator())
                         : Container();
                   }
                 },
