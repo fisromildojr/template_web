@@ -4,8 +4,34 @@ import 'package:template_web/constants/constants.dart';
 import 'package:template_web/extensions/hover_extensions.dart';
 import 'package:template_web/modules/imagem/controllers/imagem_page_controller.dart';
 
-class ImagemListPageDesktop extends GetView<ImagemPageController> {
-  const ImagemListPageDesktop({Key? key}) : super(key: key);
+class ImagemListPageDesktop extends StatefulWidget {
+  ImagemListPageDesktop({Key? key}) : super(key: key);
+
+  @override
+  State<ImagemListPageDesktop> createState() => _ImagemListPageDesktopState();
+}
+
+class _ImagemListPageDesktopState extends State<ImagemListPageDesktop> {
+  final ScrollController scrollController = ScrollController();
+  final controller = Get.find<ImagemPageController>();
+
+  @override
+  void initState() {
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        // O usuário rolou até o final, carregue mais dados
+        controller.loadMoreData();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
